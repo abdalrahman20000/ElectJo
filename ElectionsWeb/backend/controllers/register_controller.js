@@ -17,13 +17,13 @@ async function sendEmail(to, subject, html) {
   const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-      user: "Elect_site@outlook.com",
+      user: "election_joo@outlook.com",
       pass: "A12qw34er"
     }
   });
 
   const mailOptions = {
-    from: "Elect_site@outlook.com",
+    from: "election_joo@outlook.com",
     to,
     subject,
     html
@@ -42,12 +42,14 @@ exports.sign_up = async (req, res) => {
   // const db = req.app.locals.db;
   const { nid, email } = req.body;
 
-
+  
   try {
     const user = await db('Users')
-      .select('*')
-      .where('N_Id', nid)
-      .first();
+    .select('*')
+    .where('N_Id', nid)
+    .first();
+    
+    // console.log(user);
 
     if (!user) {
       res.json("nothing");

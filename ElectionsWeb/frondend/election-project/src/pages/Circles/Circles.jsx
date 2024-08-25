@@ -51,13 +51,13 @@ const Circles = () => {
   `;
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className=" bg-gray-100 min-h-screen">
       <Navbar />
 
       <style>
         {keyframes}
       </style>
-      <div className="max-w-6xl mx-auto mt-5 m-5">
+      <div className="max-w-6xl mx-auto mt-5 m-5 min-h-[77vh]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {circles.map((circle) => (
             <div

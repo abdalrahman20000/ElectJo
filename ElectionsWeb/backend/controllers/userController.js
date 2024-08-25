@@ -3,7 +3,7 @@ const knex = require('../config/db');
 
 exports.getUserByNId = async (req, res) => {
     const { N_Id } = req.params;
-
+console.log(N_Id)
     if (!N_Id) {
         return res.status(400).json({ error: 'يرجى إدخال N_Id صالح.' });
     }

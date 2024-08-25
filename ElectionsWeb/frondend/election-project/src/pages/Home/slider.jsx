@@ -1,25 +1,35 @@
 import { useState, useEffect } from "react";
-import slider1 from "../../assets/images/image 2.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function AutoplaySlider() {
-  const [Alldata, setAlldata] = useState([]); // تعديل هنا
+  const [Alldata, setAlldata] = useState([]); // بيانات الإعلانات
+  const [countdown, setCountdown] = useState(null); // بيانات التوقيت
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [Ohidden, sethidden] = useState("hidden");
 
-  const fetchMessages = async () => {
+  useEffect(() => {
+    if (Alldata.length === 0) {
+      sethidden("hidden");
+    } else {
+      sethidden("block");
+    }
+  }, [Alldata]);
+
+  // جلب بيانات الإعلانات من الخادم
+  const fetchAds = async () => {
     try {
       const response = await axios.get("http://localhost:3001/api/getAds");
-      setAlldata(response.data);
+      setAlldata(response.data.slice(-6)); // عرض آخر صورتين فقط
     } catch (error) {
-      console.error("Error fetching messages:", error);
+      console.error("Error fetching ads:", error);
     }
   };
 
   useEffect(() => {
-    fetchMessages();
+    fetchAds();
   }, []);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -46,78 +56,46 @@ function AutoplaySlider() {
   };
 
   return (
-    <div className="relative w-full h-[602px] overflow-hidden">
-      {Alldata.map((slide, index) => (
-        <div key={index} className="absolute inset-0">
-          <img
-            src={slide.image_url} // تعديل هنا لاستخدام image_url من البيانات
-            alt={`Slide ${index + 1}`}
-            className={`w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-          />
-          {index === 0 && (
-            <div
-              className={`absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 flex flex-col items-center justify-center text-white p-8 ${
+    <div className={`${Ohidden}`}>
+      <h2 className="font-cairo text-3xl font-bold pt-12 mb-4 text-center">
+        الإعلانات الرسمية للمرشحين
+      </h2>
+      <p className="font-cairo text-center mb-10">
+        تعرف على المرشحين من خلال قسم الإعلانات الرسمية للمرشحين في المملكة الأردنية الهاشمية
+      </p>
+      <div className="relative w-full h-[602px] overflow-hidden">
+        {Alldata.map((slide, index) => (
+          <div key={index} className="absolute inset-0">
+            <img
+              src={slide.image_url} // استخدام image_url من البيانات
+              alt={`Slide ${index + 1}`}
+              className={`w-full h-full object-cover transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
-              } transition-opacity duration-1000`}
-            >
-              <div className="text-center max-w-2xl px-4">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                  الوقت المتبقي لإغلاق التصويت
-                </h2>
-                <div className="bg-white/20 rounded-lg p-6 mb-8">
-                  <div className="flex flex-col sm:flex-row justify-center gap-4 rtl:gap-reverse">
-                    <div className="text-center flex-shrink-0 min-w-[120px]">
-                      <div className="text-4xl md:text-6xl font-bold mb-2 font-mono">
-                        12
-                      </div>
-                      <div className="text-sm md:text-xl">يوم</div>
-                    </div>
-
-                    <div className="text-center flex-shrink-0 min-w-[120px]">
-                      <div className="text-4xl md:text-6xl font-bold mb-2 font-mono">
-                        20
-                      </div>
-                      <div className="text-sm md:text-xl">ساعة</div>
-                    </div>
-
-                    <div className="text-center flex-shrink-0 min-w-[120px]">
-                      <div className="text-4xl md:text-6xl font-bold mb-2 font-mono">
-                        42
-                      </div>
-                      <div className="text-sm md:text-xl">دقيقة</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-6">
-                  <div className="text-lg md:text-xl mb-2">
-                    النسبة المئوية للإجمالي الكلي للناخبين
-                  </div>
-                  <div className="text-3xl md:text-5xl font-bold text-yellow-400 mb-2">
-                    10%
-                  </div>
-                </div>
-                <div className="text-xs md:text-sm bg-white/10 rounded-full px-2 md:px-4 py-1 md:py-2 inline-block">
-                  يتم إجراء التحديثات بشكل دوري كل دقيقتين
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-      <button
-        onClick={goToPrevious}
-        className="absolute text-[20px] left-2 top-1/2 w-[50px] h-[50px] transform -translate-y-1/2 bg-white/50 p-2 rounded-full z-10"
-      >
-        &#10095;
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute right-2 text-[20px] top-1/2 w-[50px] h-[50px] transform -translate-y-1/2 bg-white/50 p-2 rounded-full z-10"
-      >
-        &#10094;
-      </button>
+              }`}
+            />
+          </div>
+        ))}
+        <button
+          onClick={goToPrevious}
+          className="absolute text-[20px] left-2 top-1/2 w-[50px] h-[50px] transform -translate-y-1/2 bg-white/50 p-2 rounded-full z-10"
+        >
+          &#10095;
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-2 text-[20px] top-1/2 w-[50px] h-[50px] transform -translate-y-1/2 bg-white/50 p-2 rounded-full z-10"
+        >
+          &#10094;
+        </button>
+      </div>
+      <div className="text-center mt-4">
+        <Link
+      to="/AdsPage"
+          className="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-5"
+        >
+          عرض جميع الأعلانات
+        </Link>
+      </div>
     </div>
   );
 }

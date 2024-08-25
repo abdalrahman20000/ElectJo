@@ -35,14 +35,14 @@ const Log_in_home = () => {
       const response = await axios.post(`http://localhost:3001/db/vs/log-in`, { nid, pass });
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        alert("Log in successfully !!!");
+        alert("تم تسجيل الدخول بنجاح !!!");
         navigate('/');
       } else {
-        alert("Login failed: No token received");
+        alert("حدث خطا !!!");
       }
     } catch (error) {
       console.log("Log in failed", error);
-      alert("Log in failed: " + error.message);
+      alert("حدث خطا !!! في تسجيل الدخول: " + error.message);
     }
   }
 
@@ -110,7 +110,7 @@ const Log_in_home = () => {
                   onClick={() => set_showPassword(!showPassword)}
                   className="absolute right-11 top-1/2 transform -translate-y-1/2 text-gray-400"
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {/* {showPassword ? <EyeOff size={20} /> : <Eye size={20} />} */}
                 </button>
               </div>
               {errors.pass && <p className="text-red-500 text-xs mt-1">{errors.pass}</p>}

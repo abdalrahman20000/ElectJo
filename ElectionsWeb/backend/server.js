@@ -20,10 +20,15 @@ const express = require('express');
 const db = require('./config/db'); // استيراد الاتصال بقاعدة البيانات
 require('dotenv').config();
 const cors = require('cors');
+
 const listController = require('./controllers/listController'); // تأكد من أنك قد أنشأت هذا الملف
 const candiController = require('./controllers/candiController'); // تأكد من أنك قد أنشأت هذا الملف
 const userRoutes = require('./routes/userRoutes');
+
 const partyRoutes = require('./routes/partyRoutes');
+
+
+
 
 const listRoutes = require('./routes/listRoutes');
 const app = express();
@@ -32,11 +37,18 @@ const PORT = 3001;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api', partyRoutes);
 
 // Chat Routes
 const ChatRoutes = require('./routes/ChatRoutes');
 app.use('/api', ChatRoutes);
 
+app.use('/api', partyRoutes);
+
+
+//users fro local lists
+const userRouter = require('.//routes/userRoutes');
+app.use('/api/users', userRouter);
 
 // Chat Routes
 const AdsRoutes = require('./routes/AdsRoutes');
@@ -57,13 +69,18 @@ const localListsRoutes = require('.//routes/localListsRoutes');
 app.use('/api/local-lists', localListsRoutes); // Correct path for local lists
 
 
-//partyLists
-const partyListsRoutes = require('.//routes/partyListsRoutes');
-app.use('/api/party-lists', partyListsRoutes);
 
-//users fro local lists
+
+//users fro local 
+
+console.log("users");
 const usersRouter = require('.//routes/usersRoutes');
 app.use('/api/users', usersRouter);
+
+
+
+const candidateRoutes = require('.//routes/candiRoutes');
+app.use('/api', candidateRoutes); // Register the routes
 
 
 
@@ -77,7 +94,12 @@ app.post('/api/lists', listController.createList);
 app.get('/api/lists', listController.getLists);
 app.put('/api/lists', listController.updateList);
 app.delete('/api/lists', listController.deleteList);
+app.post('/api/candidates', candiController.createCandidate);
 
+
+// Register router
+const Count_down = require("./routes/CountdownRoutes");
+app.use("/api", Count_down);
 
 
 

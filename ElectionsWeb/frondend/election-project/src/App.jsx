@@ -13,10 +13,12 @@ import Voting from './pages/Voting/voting';
 import LocalRequest from './pages/Requests/LocalRequest';
 import CandidatesRequest from './pages/Requests/CandidatesRequest';
 import AddList from './pages/Requests/AddList';
+import AdsPage from './pages/ADS/ADS';
 
 import Debate_ from './pages/Debate/debate';
 import Debate_Room from './pages/Debate/room';
 import Debate_screen from './pages/Debate/debate_screen';
+import DebatesPage from './pages/Debate/debate_main';
 import ContactUs from './pages/ContactUs/contactUs';
 
 
@@ -35,7 +37,6 @@ import LocalLists from './pages/LocalLists/LocalLists';
 import PartyListsPage from './pages/PartyListsPage/PartyListsPage';
 
 
-
 function App() {
   return (
     <Router>
@@ -46,29 +47,28 @@ function App() {
         <Route path="/debate-screen" element={<Debate_screen />} />
         <Route path="/debate-room/:roomId" element={<Debate_Room />} />
         <Route path="/debate" element={<Debate_ />} />
+        <Route path="/debates-main" element={<DebatesPage />} />
 
         <Route path="/" element={<Home />} />
         <Route path="/candidates" element={<Candidates />} />
         <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/electionLists" element={<ElectionLists />} />
-        <Route path="/results" element={<Results />} />
-        <Route path="/voting" element={<Voting />} />
+        <Route path="/electionLists" element={<ElectionLists />} /> {/*----------------- */}
+        <Route path="/results" element={<Results />} />        {/*----------------- */}
         <Route path="/localRequest" element={<LocalRequest />} />
         <Route path="/AddList" element={<AddList />} />
         <Route path="/BuyAds" element={<ADS_Page />} />
         <Route path="/BayDebate" element={<Debate />} />
-        
 
-        <Route path="/payment" element={<PaymentPage />} />
+        {/*----------------- */}
+        <Route path="/payment" element={<PaymentPage />} />   {/*----------------- */}
         <Route path="/invoice" element={<Invoice />} />
 
-        <Route path="/voting" element={<Voting />} />
+        <Route path="/voting" element={<Voting />} />   {/*----------------- */}
         <Route path="/localRequest" element={<LocalRequest />} />
         <Route path="/AddList" element={<AddList />} />
         <Route path="/AddPartyList" element={<AddPartyList />} />
         <Route path="/CandidatesRequest" element={<CandidatesRequest />} />
 
-        <Route path="/voting" element={<Voting />} />
 
         <Route path="/log-in" element={<Log_in />} />
         <Route path="/log-in-new" element={<Log_in_new />} />
@@ -78,22 +78,13 @@ function App() {
         <Route path="/contact" element={<ContactUs />}></Route>
         <Route path="/about" element={<AboutUs />}></Route>
 
-
-
-
-        <Route path="/electoral" element={<ElectoralList/>} />
+        <Route path="/electoral" element={<ElectoralList />} />
         <Route path="/circles" element={<Circles />} />
         <Route path="/local-lists" element={<LocalLists />} />
-        <Route path="/party-lists" element={<PartyListsPage />} />
+        <Route path="/party-lists" element={<PartyListsPage />} />   {/*----------------- */}
 
 
-
-
-
-
-
-
-
+        <Route path="/AdsPage" element={<AdsPage />} />   {/*----------------- */}
 
 
       </Routes>

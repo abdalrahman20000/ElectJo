@@ -39,7 +39,7 @@ function AddPartyList() {
                 } else if (error.response.status === 500) {
                     setError('حدث خطأ في الخادم. حاول مرة أخرى لاحقًا.');
                 } else {
-                    setError('حدث خطأ غير متوقع.');
+                    setError('ليس لديك صلاحية لإضافة قائمة.');
                 }
             } else {
                 setError('لا يمكن الاتصال بالخادم. تأكد من تشغيل الخادم وحاول مرة أخرى.');
@@ -83,19 +83,7 @@ function AddPartyList() {
                     />
                 </div>
 
-                <div className="mb-6">
-                    <label htmlFor="circle" className="block mb-2 text-sm font-medium text-gray-900 text-right">
-                        عدد المترشحين
-                    </label>
-                    <input
-                        type="text"
-                        id="circle"
-                        className="shadow-sm bg-white border border-gray-300 rounded-lg w-full p-2.5 text-gray-900 focus:ring-green-500 focus:border-green-500"
-                        value={circle}
-                        onChange={(e) => setCircle(e.target.value)}
-                        required
-                    />
-                </div>
+           
 
                 <div className="mb-6">
                     <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 text-right">

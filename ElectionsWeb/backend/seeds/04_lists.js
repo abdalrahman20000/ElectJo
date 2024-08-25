@@ -1,12 +1,25 @@
+// exports.seed = function(knex) {
+//   return knex('Lists').del()  // Optional: clear the table before seeding
+//     .then(function () {
+//       return knex('Lists').insert([
+//         { list_id: 1, candidate: 1, circle: 1, file_path: 'path1', logo: 'logo1', name: 'List 1', org: 'Org 1' },
+//         { list_id: 2, candidate: 2, circle: 2, file_path: 'path2', logo: 'logo2', name: 'List 2', org: 'Org 2' },
+//         // Ensure all candidate IDs and circle IDs are valid and exist in their respective tables
+//       ]);
+//     });
+// };
+
+
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('Lists').del()
+  return knex('Lists').del()  // Optional: clear the table before seeding
     .then(function () {
-      // Inserts seed entries
       return knex('Lists').insert([
-        {list_id: 1,name: 'قائمة الأمل', org: 'منظمة الأمل', logo: 'logo1.png', circle: 'الدائرة 1', candidate: 1, file_path: 'file1.pdf'},
-        {list_id: 2,name: 'قائمة النجاح', org: 'منظمة النجاح', logo: 'logo2.png', circle: 'الدائرة 2', candidate: 2, file_path: 'file2.pdf'},
-        {list_id: 3,name: 'قائمة الوحدة', org: 'منظمة الوحدة', logo: 'logo3.png', circle: 'الدائرة 3', candidate: 3, file_path: 'file3.pdf'}
+        { list_id: 1, candidate: 1, circle: 1, file_path: 'path1', logo: 'logo1', name: 'قائمة 1', org: 'منظمة 1' },
+        { list_id: 2, candidate: 2, circle: 2, file_path: 'path2', logo: 'logo2', name: 'قائمة 2', org: 'منظمة 2' },
+        // Add more lists up to 20 records
       ]);
     });
 };
+
+
+

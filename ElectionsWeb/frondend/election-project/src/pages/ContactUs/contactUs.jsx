@@ -41,7 +41,7 @@ const ContactUs = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 ">
         <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl overflow-hidden">
           <div className="flex flex-col md:flex-row">
             <div className="bg-red-700 text-white p-8 md:w-1/2">

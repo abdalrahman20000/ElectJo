@@ -71,23 +71,14 @@ function ADS_Page() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#272c29] flex items-center justify-center p-4">
+      <div className="min-h-screen  flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h2 className="text-3xl font-bold mb-6 text-center text-[#000000]">
             طلب إعلان
           </h2>
           <div className="flex justify-center space-x-4 mt-4 mb-3">
 
-  <Link to="/BayDebate"
-    className="py-2 px-4 bg-[#000000] ml-3 text-white rounded-md font-medium text-lg hover:bg-[#363637] transition"
-  >
-    شراء مناظرة
-  </Link>
-  <Link to="/BuyAds"
-    className="py-2 px-4 bg-[#26a935]  text-white rounded-md font-medium text-lg hover:bg-[#2bc03d] transition"
-  >
-    شراء إعلان
-  </Link>
+ 
 </div>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>

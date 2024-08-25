@@ -10,17 +10,17 @@ function LocalRequest() {
   const navigate = useNavigate();
 
   const handleCreateList = () => {
-    navigate('/AddList'); // الانتقال إلى صفحة إضافة القائمة
+    navigate('/AddList');      
   };
   const handleCreateList2 = () => {
-    navigate('/AddPartyList'); // الانتقال إلى صفحة إضافة القائمة
+    navigate('/AddPartyList');    
   };
 
 
   return (
     <div><Navbar />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32 ">
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+        <h1 className="mx-auto max-w-4xl max-sm:xl max-sm:mb-20 font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
           <span className="inline-block">
             <span className="relative whitespace-nowrap text-red-600">
               <svg
@@ -36,7 +36,7 @@ function LocalRequest() {
           </span>
           <span className="inline-block"> كن صوتًا للتغيير. !</span>
         </h1>
-        <p className="mx-auto -mt-4 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
+        <p className="mx-auto -mt-4 max-w-2xl max-sm:xl max-sm:mb-20 text-lg tracking-tight text-slate-700 sm:mt-6">
           يرجى التأكد من استيفاء جميع الشروط القانونية قبل تقديم طلب الترشح. يجب أن تكون جميع البيانات المقدمة صحيحة ودقيقة.
           <span className="border-b border-dotted border-slate-300"></span>
         </p>
@@ -58,9 +58,9 @@ function LocalRequest() {
   aria-expanded="false"
   data-headlessui-state=""
   type="button"
-  onClick={handleCreateList} // استدعاء الدالة عند النقر على الزر
+  onClick={handleCreateList}  
 >
-  <span className="ml-3">إنشاء قائمة محلية</span>
+  <span className="">إنشاء قائمة محلية</span>
 </button>
 <button
   className="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none ring-1 bg-green-600 text-white hover:bg-green-700 focus:ring-4 focus:ring-green-300 animate-fade-in-right"
@@ -69,16 +69,16 @@ function LocalRequest() {
   aria-expanded="false"
   data-headlessui-state=""
   type="button"
-  onClick={handleCreateList2} // استدعاء الدالة عند النقر على الزر
+  onClick={handleCreateList2} 
 >
-  <span className="ml-3">إنشاء قائمة حزبية</span>
+  <span className="">إنشاء قائمة حزبية</span>
 </button>
 
 
           </div>
         </div>
       </div>
-      {/* <div><Footer /></div> */}
+     
     
     </div>
   );

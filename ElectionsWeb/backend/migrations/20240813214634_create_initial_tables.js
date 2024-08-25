@@ -291,14 +291,9 @@ exports.up = function(knex) {
 
 
 
-    // .createTable('partyList', function(table) {
-    //   table.increments('party_id').primary();
-    //   table.string('name').notNullable();
-    //   table.string('logo');
-    //   table.integer('count').defaultTo(0);
-    //   table.string('organizer').notNullable();
-    //   table.integer('Election_id').unsigned().references('id').inTable('ElectionType').onDelete('CASCADE');
-    // })
+        
+        
+       
     // Done
   // .createTable('localList', function(table) {
   //       table.increments('id').primary(); // Primary key
@@ -395,6 +390,16 @@ exports.up = function(knex) {
       // Foreign Key Reference to Users table's N_Id column
       table.foreign('CN_Id').references('N_Id').inTable('Users').onDelete('CASCADE');
   })
+
+  .createTable('countdown_timer', function(table) {
+    table.increments('id').primary();
+    table.boolean('Timer').defaultTo(true);
+    table.integer('days').notNullable();
+    table.integer('hours').notNullable();
+    table.integer('minutes').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+  })
+
     
   .createTable('localList', function(table) {
     table.increments('id').primary(); // Primary key
@@ -431,6 +436,7 @@ exports.up = function(knex) {
     })
 
 
+
     .createTable('contactMessages', function(table) {
       table.increments('mid').primary();
       table.string('name').notNullable();
@@ -439,10 +445,29 @@ exports.up = function(knex) {
     })
 
 
+    .createTable('partyList', function(table) {
+      table.increments('party_id').primary(); // Primary key
+      table.string('name').notNullable(); // Party name
+      table.string('logo'); // Logo image URL or path
+      table.integer('count').defaultTo(0); // Count field with default value 0
+      table.string('organizer').notNullable(); // Organizer's name
+      table.integer('numOfVotes').defaultTo(0); // New column with default value of 0
 
+
+    });
+
+
+
+    // .createTable('contactMessages', function(table) {
+    //   table.increments('mid').primary();
+    //   table.string('name').notNullable();
+    //   table.string('email').notNullable();
+    //   table.text('message').notNullable();
+    // })
   
-  
+
   ;
+
 };
 
 exports.down = function(knex) {
@@ -472,5 +497,6 @@ return (
     
     .dropTableIfExists("localList") // Drop localList before Circles
     .dropTableIfExists("Circles") // Finally, drop Circles
+    .dropTableIfExists("countdown_timer") 
 );
 };

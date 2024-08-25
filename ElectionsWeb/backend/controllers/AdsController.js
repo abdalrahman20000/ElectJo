@@ -1,6 +1,7 @@
 const knex = require("knex")(require("../knexfile").development);
 
 exports.AddAds = async (req, res) => {
+  console.log("inside ads");
   const {
     request_type,
     title,
@@ -10,7 +11,8 @@ exports.AddAds = async (req, res) => {
     candidate_one_id,
     candidate_two_id,
   } = req.body;
-
+  
+  console.log(image);
   try {
     await knex("Ads").insert({
       request_type: request_type,

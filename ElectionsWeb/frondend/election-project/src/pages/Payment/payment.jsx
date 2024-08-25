@@ -103,7 +103,7 @@ const PaymentPage = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p">
         <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-5xl w-full flex flex-col lg:flex-row lg:space-x-12 space-y-8 lg:space-y-0">
           {/* ملخص الطلب (اليمين) */}
           <div className="lg:w-1/3 mt-[16px] ml-[30px]">
@@ -253,7 +253,22 @@ const PaymentPage = () => {
                 </div>
               </form>
             </div>
-
+            <form
+              action=""
+              onSubmit={(e) => {
+                e.preventDefault();
+                Submit();
+              }}
+            >
+              <div className="flex items-center justify-between mb-7">
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r w-full from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline hover:from-green-600 hover:to-green-700 transition duration-300 shadow-lg"
+                >
+                  إكمال الشراء
+                </button>
+              </div>
+            </form>
             {/* طريقة الدفع */}
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-right">
@@ -278,10 +293,16 @@ const PaymentPage = () => {
                               description: "",
                               amount: {
                                 currency_code: "USD",
-                                value: "200.00",
+                                value: price,
                               },
                             },
                           ],
+                        });
+                      }}
+                      onApprove={(data, actions) => {
+                        return actions.order.capture().then(function (details) {
+                          ads();
+                          navigate("/invoice");
                         });
                       }}
                     />
@@ -289,22 +310,7 @@ const PaymentPage = () => {
                 </PayPalScriptProvider>
               </div>
             </div>
-            <form
-              action=""
-              onSubmit={(e) => {
-                e.preventDefault();
-                Submit();
-              }}
-            >
-              <div className="flex items-center justify-between">
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r w-full from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline hover:from-green-600 hover:to-green-700 transition duration-300 shadow-lg"
-                >
-                  إكمال الشراء
-                </button>
-              </div>
-            </form>
+           
           </div>
         </div>
       </div>

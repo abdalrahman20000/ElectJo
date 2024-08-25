@@ -40,10 +40,10 @@ const Log_in_new = () => {
       set_result(response.data);
 
       if (response.data == "matched") {
-        alert("Log in successfully !!!");
+        alert("تم تسجيل الدخول بنجاح !!!");
         navigate("/update-pass");
       } else {
-        alert("something wrong !!!");
+        alert("حدث خطا !!!");
       }
     } catch (error) {
       console.log("Log in failed", error);

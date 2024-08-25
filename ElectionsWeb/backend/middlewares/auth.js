@@ -15,8 +15,13 @@ const verifyToken = (req, res, next) => {
     req.user = decoded; // تخزين بيانات المستخدم المفكك في req.user
     next(); // الانتقال إلى الـ middleware التالي
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      // إذا كانت صلاحية التوكن منتهية
+      return res.status(401).json({ error: "انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى." });
+    }
     return res.status(403).json({ error: "Invalid token" });
   }
+  
 };
 
 module.exports = {

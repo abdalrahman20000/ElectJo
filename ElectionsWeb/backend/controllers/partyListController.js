@@ -1,3 +1,4 @@
+
 const knex = require('../config/db');
 
 exports.createList2 = async (req, res) => {
@@ -14,7 +15,7 @@ exports.createList2 = async (req, res) => {
 
         if (!authorizedPerson) {
             return res.status(403).json({ error: 'ليس لديك صلاحية لإضافة قائمة.' });
-        }
+        }                           
 
         const [party_id] = await knex('partyList').insert({ name, organizer, logo }).returning('party_id');
         res.status(201).json({ message: 'تمت إضافة القائمة بنجاح!', party_id });
